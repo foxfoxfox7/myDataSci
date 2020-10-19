@@ -304,3 +304,11 @@ country_grouped = medals.groupby('NOC')
 Nsports = country_grouped['Sport'].nunique()
 # Sort the values of Nsports in descending order
 Nsports = Nsports.sort_values(ascending=False)
+
+# THE NUMBER OF TIMES A VALUE IN ONE COL IS SOMETHING IN ANOTHER ##############
+
+# Seeing how many times the patient has no-showed
+# Need to change it to before!
+patID_count_ns = df[df['No-show'] == 'Yes']['PatientId'].value_counts()
+patID_count_ns_dict = patID_count_ns.to_dict()
+df['ns_count'] = df['PatientId'].map(patID_count_ns_dict)
